@@ -4,17 +4,6 @@
 ### Introduction
 PCN is a learning-based shape completion method which directly maps a partial point cloud to a dense, complete point cloud without any voxelization. It is based on our 3DV 2018 publication [PCN: Point Completion Network](https://arxiv.org/abs/1808.00671/). Please refer to our [project website](https://cs.cmu.edu/~wyuan1/pcn) or read our paper for more details.
 
-### Citation
-If you find our work useful for your research, please cite:
-```
-@inProceedings{yuan2018pcn,
-  title     = {PCN: Point Completion Network},
-  author    = {Yuan, Wentao and Khot, Tejas and Held, David and Mertz, Christoph and Hebert, Martial},
-  booktitle = {3D Vision (3DV), 2018 International Conference on},
-  year      = {2018}
-}
-```
-
 ### Usage
 
 #### 1) Prerequisite
@@ -43,6 +32,17 @@ Inside docker run `python3 demo.py`. Use `--input_path` option to switch between
 
 #### 7) Data Generation
 To generate your own data from ShapeNet, first Download [ShapeNetCore.v1](https://shapenet.org). Then, create partial point clouds from depth images (see instructions in `render`) and corresponding ground truths by sampling from CAD models (see instructions in `sample`). Finally, serialize the data using `lmdb_writer.py`.
+
+### Citation
+If you find our work useful for your research, please cite:
+```
+@inProceedings{yuan2018pcn,
+  title     = {PCN: Point Completion Network},
+  author    = {Yuan, Wentao and Khot, Tejas and Held, David and Mertz, Christoph and Hebert, Martial},
+  booktitle = {3D Vision (3DV), 2018 International Conference on},
+  year      = {2018}
+}
+```
 
 ### License
 This project Code is released under the MIT License (refer to the LICENSE file for details).
