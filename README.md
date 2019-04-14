@@ -11,7 +11,7 @@ PCN is a learning-based shape completion method which directly maps a partial po
 3. Download trained models from [Google Drive](https://drive.google.com/open?id=1Af9igOStb6O9YHwjYHOwR0qW4uP3zLA6).
 
 #### 2) Demo
-Under 'scripts' folder, run 'run_docker.sh'
+Under `scripts` folder, run `run_docker.sh`.
 Inside docker run `python3 demo.py`. Use `--input_path` option to switch between the input examples in `demo_data`.
 
 #### 3) ShapeNet Completion
