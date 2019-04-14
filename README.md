@@ -18,11 +18,12 @@ If you find our work useful for your research, please cite:
 ### Usage
 
 #### 1) Prerequisite
-1. Under `script`, run `./build_docker.sh`
+1. Under `scripts` folder, run `./build_docker.sh`
 3. Download trained models from [Google Drive](https://drive.google.com/open?id=1Af9igOStb6O9YHwjYHOwR0qW4uP3zLA6).
 
 #### 2) Demo
-Run `python3 demo.py`. Use `--input_path` option to switch between the input examples in `demo_data`.
+Under 'scripts' folder, run 'run_docker.sh'
+Inside docker run `python3 demo.py`. Use `--input_path` option to switch between the input examples in `demo_data`.
 
 #### 3) ShapeNet Completion
 1. Download ShapeNet test data in the `shapenet` folder on [Google Drive](https://drive.google.com/open?id=1Af9igOStb6O9YHwjYHOwR0qW4uP3zLA6). Specifically, this experiment requires `test`, `test_novel`, `test.list` and `test_novel.list`.
