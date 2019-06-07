@@ -16,4 +16,3 @@ RUN pip3 install tensorpack==0.8.9
 
 EXPOSE 8888
 WORKDIR /code
-
