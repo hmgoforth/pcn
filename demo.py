@@ -8,6 +8,7 @@ import tensorflow as tf
 from matplotlib import pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from open3d import *
+from pdb import set_trace as st
 
 
 def plot_pcd(ax, pcd):
@@ -24,6 +25,7 @@ if __name__ == '__main__':
     parser.add_argument('--model_type', default='pcn_cd')
     parser.add_argument('--checkpoint', default='data/trained_models/pcn_cd')
     parser.add_argument('--num_gt_points', type=int, default=16384)
+    parser.add_argument('--num_samp', type=int)
     args = parser.parse_args()
 
     inputs = tf.placeholder(tf.float32, (1, None, 3))
@@ -41,6 +43,9 @@ if __name__ == '__main__':
 
     partial = read_point_cloud(args.input_path)
     partial = np.array(partial.points)
+    partial_samp = np.random.choice(np.arange(partial.shape[0]), args.num_samp)
+    
+    partial = partial[partial_samp]
     complete = sess.run(model.outputs, feed_dict={inputs: [partial]})[0]
 
     fig = plt.figure(figsize=(8, 4))

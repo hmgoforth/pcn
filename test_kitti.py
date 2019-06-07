@@ -44,26 +44,36 @@ def test(args):
                             [np.sin(yaw), np.cos(yaw), 0],
                             [0, 0, 1]])
         bbox = np.dot(bbox, rotation)
-        scale = bbox[3, 0] - bbox[0, 0]
+        scale = (bbox[3, 0] - bbox[0, 0])
         bbox /= scale
 
         partial = np.dot(partial - center, rotation) / scale
         partial = np.dot(partial, [[1, 0, 0], [0, 0, 1], [0, 1, 0]])
 
+        partial_perturb = partial + [0.2, 0.2, 0]
+
         start = time.time()
         completion = sess.run(model.outputs, feed_dict={inputs: [partial]})
+        completion_perturb = sess.run(model.outputs, feed_dict={inputs: [partial_perturb]})
         total_time += time.time() - start
         completion = completion[0]
+        completion_perturb = completion_perturb[0]
 
         completion_w = np.dot(completion, [[1, 0, 0], [0, 0, 1], [0, 1, 0]])
         completion_w = np.dot(completion_w * scale, rotation.T) + center
+
         pcd_path = os.path.join(args.results_dir, 'completions', '%s.pcd' % car_id)
         save_pcd(pcd_path, completion_w)
 
         if i % args.plot_freq == 0:
+            plot_path_perturb = os.path.join(args.results_dir, 'plots', '%s_perturb.png' % car_id)
             plot_path = os.path.join(args.results_dir, 'plots', '%s.png' % car_id)
+            
+            plot_pcd_three_views(plot_path_perturb, [partial_perturb, completion_perturb], ['input', 'output'],
+                                 '%d input points' % partial.shape[0], [5, 0.5])
             plot_pcd_three_views(plot_path, [partial, completion], ['input', 'output'],
                                  '%d input points' % partial.shape[0], [5, 0.5])
+
     print('Average # input points:', total_points / len(car_ids))
     print('Average time:', total_time / len(car_ids))
     sess.close()

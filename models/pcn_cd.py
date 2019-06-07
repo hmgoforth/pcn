@@ -2,7 +2,7 @@
 
 import tensorflow as tf
 from tf_util import mlp, mlp_conv, chamfer, add_train_summary, add_valid_summary
-
+from pdb import set_trace as st
 
 class Model:
     def __init__(self, inputs, gt, alpha):

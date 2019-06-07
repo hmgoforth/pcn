@@ -2,7 +2,7 @@
 
 import tensorflow as tf
 from pc_distance import tf_nndistance, tf_approxmatch
-
+from pdb import set_trace as st
 
 def mlp(features, layer_dims, bn=None, bn_params=None):
     for i, num_outputs in enumerate(layer_dims[:-1]):
@@ -20,13 +20,14 @@ def mlp(features, layer_dims, bn=None, bn_params=None):
 
 def mlp_conv(inputs, layer_dims, bn=None, bn_params=None):
     for i, num_out_channel in enumerate(layer_dims[:-1]):
-        inputs = tf.contrib.layers.conv2d(
+        inputs = tf.contrib.layers.convolution1d(
             inputs, num_out_channel,
-            kernel_size=1,
+            kernel_size=1, 
             normalizer_fn=bn,
             normalizer_params=bn_params,
             scope='conv_%d' % i)
-    outputs = tf.contrib.layers.conv2d(
+
+    outputs = tf.contrib.layers.conv1d(
         inputs, layer_dims[-1],
         kernel_size=1,
         activation_fn=None,
