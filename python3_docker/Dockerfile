@@ -13,6 +13,8 @@ RUN pip3 install numpy>=1.14.0
 RUN pip3 install pyarrow==0.10.0
 RUN pip3 install tensorflow-gpu==1.12.0
 RUN pip3 install tensorpack==0.8.9
+RUN pip3 install pytz
+RUN pip3 install transforms3d
 
 EXPOSE 8888
 WORKDIR /code
